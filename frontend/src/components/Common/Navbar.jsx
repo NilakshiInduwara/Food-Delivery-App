@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import { RiAccountCircleFill } from "react-icons/ri";
+import { GrFavorite } from "react-icons/gr";
 import { VscThreeBars } from "react-icons/vsc";
 import SearchBar from "../Common/SearchBar";
 import { useState, useRef, useEffect } from "react";
@@ -27,7 +28,7 @@ const Navbar = () => {
 
   return (
     <>
-        <nav className="container mx-auto flex items-center justify-between py-4 pr-6 pl-4">
+        <nav className="container fixed top-0 z-50 bg-white mx-auto flex items-center justify-between py-4 pr-6 pl-4">
             <div>
                 <Link to="/" className="text-lg font-semibold"> DelivaryDash</Link>
             </div>
@@ -39,7 +40,7 @@ const Navbar = () => {
                 </Link>
             </div>
 
-            {/* Cart, Account, Search bar */}
+            {/* Cart, Account, Favorites, Search bar, Three bars */}            
             <div className="flex space-x-4 items-center" ref={cartRef}>
                 <button 
                     onClick={handleCartOpen}
@@ -51,10 +52,12 @@ const Navbar = () => {
                     <Cart isOpen={isCartOpen} handleCartOpen={handleCartOpen}/>
                 )}
 
+                <button className="text-gray-700 hover:text-black"><GrFavorite /></button>
+
                 <Link to="#" className="text-gray-700 hover:text-black"><RiAccountCircleFill /></Link>
                 
                 <button className="text-gray-700 hover:text-black md:hidden"><VscThreeBars /></button>
-                <SearchBar />
+                <SearchBar />                
             </div>
         </nav>
     </>
