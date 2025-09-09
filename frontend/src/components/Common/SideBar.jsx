@@ -33,7 +33,7 @@ const SideBar = () => {
     ];
 
   return (
-    <div className="hidden md:block bg-orange-50 p-4 rounded w-40 top-16 bottom-0 overflow-y-auto fixed no-scrollbar">
+    <div className="hidden md:block bg-orange-50 p-4 rounded w-40 top-[3.4rem] bottom-0 overflow-y-auto fixed no-scrollbar">
         {categories.map((category, index) => (
             <div key={index}  className="text-gray-800 hover:text-black pb-3">
                 <Link to="#" >{category}</Link>

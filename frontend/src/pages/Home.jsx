@@ -19,7 +19,7 @@ const Home = () => {
           <div className="container mx-auto mb-10 flex flex-col md:flex-row">
             <div className="relative flex-1">
               <img src={offersImage} alt="Offers" className="w-full h-[300px] object-cover rounded-2xl" />
-              <Link to="/" className="absolute bottom-20 flex justify-center bg-white bg-opacity-70 p-4">
+              <Link to="/offers" className="absolute bottom-20 flex justify-center bg-white bg-opacity-70 p-4">
                 <h2 className="text-2xl lg:text-4xl font-bold text-center">Today's Offers</h2>
               </Link>
             </div>            

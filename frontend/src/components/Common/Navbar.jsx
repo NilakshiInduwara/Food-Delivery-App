@@ -28,7 +28,7 @@ const Navbar = () => {
 
   return (
     <>
-        <nav className="container fixed top-0 z-50 bg-white mx-auto flex items-center justify-between py-4 pr-6 pl-4">
+        <nav className="container fixed top-0 z-50 border-b-2 bg-white mx-auto flex items-center justify-between py-4 pr-6 pl-4">
             <div>
                 <Link to="/" className="text-lg font-semibold"> DelivaryDash</Link>
             </div>
