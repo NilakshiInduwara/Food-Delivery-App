@@ -5,30 +5,31 @@ import { CARD_WIDTH } from "../Constants";
 import offer1 from "../assets/images/Temp/Offer-1.jpg";
 import offer2 from "../assets/images/Temp/Offer-2.jpg";
 import offer3 from "../assets/images/Temp/Offer-3.webp";
+import PlaceOrder from "../components/Common/PlaceOrder";
 
 const offers = [
-    { id: 1, name: "Italiano Delight", item: "Fried Rice", title: "50% off on all orders", description: "Get 50% off on all orders above $20 50% off on all orders above $20", validTill: "2023-12-31", image: offer1 },
-    { id: 4, name: "Italiano Delight", item: "Fried Rice", title: "50% off on all ordersw", description: "Get 50% off on all orders above $20", validTill: "2023-12-31", image: offer2 },
-    { id: 5, name: "Italiano Delight", item: "Fried Rice", title: "50% off on all orderss", description: "Get 50% off on all orders above $20", validTill: "2023-12-31", image: offer3 },
-    { id: 6, name: "Italiano Delight", item: "Fried Rice", title: "50% off on all ordersf", description: "Get 50% off on all orders above $20", validTill: "2023-12-31", image: offer2 },
-    { id: 7, name: "Italiano Delight", item: "Fried Rice", title: "50% off on all ordddddd", description: "Get 40% off ", validTill: "2023-12-31", image: offer3 },
-    { id: 8, name: "Italiano Delight", item: "Fried Rice", title: "50% off on all placedsf", description: "Get 40% off ", validTill: "2023-12-31", image: offer3 },
-    { id: 2, name: "Sushi World", item: "Noodles", title: "Free Delivery", description: "Enjoy free delivery on your first 3 orders", validTill: "2023-11-30", image: offer2 },
-    { id: 3, name: "Burger Barn", item: "Pizza", title: "Buy 1 Get 1 Free", description: "Buy one pizza and get another one free", validTill: "2023-10-15", image: offer3 },
+    { id: 1, name: "Italiano Delight", item: "Fried Rice", price: 10.99, title: "50% off on all orders", description: "Get 50% off on all orders above $20 50% off on all orders above $20", validTill: "2023-12-31", image: offer1 },
+    { id: 4, name: "Italiano Delight", item: "Fried Rice", price: 11.99, title: "50% off on all ordersw", description: "Get 50% off on all orders above $20", validTill: "2023-12-31", image: offer2 },
+    { id: 5, name: "Italiano Delight", item: "Fried Rice", price: 14.99, title: "50% off on all orderss", description: "Get 50% off on all orders above $20", validTill: "2023-12-31", image: offer3 },
+    { id: 6, name: "Italiano Delight", item: "Fried Rice", price: 105.99, title: "50% off on all ordersf", description: "Get 50% off on all orders above $20", validTill: "2023-12-31", image: offer2 },
+    { id: 7, name: "Italiano Delight", item: "Fried Rice", price: 134.99, title: "50% off on all ordddddd", description: "Get 40% off ", validTill: "2023-12-31", image: offer3 },
+    { id: 8, name: "Italiano Delight", item: "Fried Rice", price: 10.99, title: "50% off on all placedsf", description: "Get 40% off ", validTill: "2023-12-31", image: offer3 },
+    { id: 2, name: "Sushi World", item: "Noodles", price: 12.99, title: "Free Delivery", description: "Enjoy free delivery on your first 3 orders", validTill: "2023-11-30", image: offer2 },
+    { id: 3, name: "Burger Barn", item: "Pizza", price: 14.99, title: "Buy 1 Get 1 Free", description: "Buy one pizza and get another one free", validTill: "2023-10-15", image: offer3 },
 ];
 
 const restaurants = [
-    { id: 1, name: "Italiano Delight", cuisine: "Italian", rating: 4.5 },
-    { id: 2, name: "Sushi World", cuisine: "Japanese", rating: 4.7 },
-    { id: 3, name: "Curry House", cuisine: "Indian", rating: 4.3 },
-    { id: 4, name: "Burger Barn", cuisine: "American", rating: 5.0 },
-    { id: 5, name: "Taco Town", cuisine: "Mexican", rating: 4.2 },
-    { id: 6, name: "Dragon's Breath", cuisine: "Chinese", rating: 4.6 },
-    { id: 7, name: "Mediterraneo", cuisine: "Mediterranean", rating: 4.4 },
-    { id: 8, name: "Vegan Vibes", cuisine: "Vegan", rating: 4.8 },
-    { id: 9, name: "BBQ Pit", cuisine: "Barbecue", rating: 4.1 },
-    { id: 10, name: "Seafood Shack", cuisine: "Seafood", rating: 4.5 },
-    { id: 11, name: "Pasta Palace", cuisine: "Italian", rating: 4.3 },
+    { id: 1, name: "Italiano Delight", cuisine: "Italian", rating: 4.5, location: "Downtown" },
+    { id: 2, name: "Sushi World", cuisine: "Japanese", rating: 4.7, location: "210,V, Galle Rd, Matara" },
+    { id: 3, name: "Curry House", cuisine: "Indian", rating: 4.3, location: "Midtown" },
+    { id: 4, name: "Burger Barn", cuisine: "American", rating: 5.0, location: "Downtown" },
+    { id: 5, name: "Taco Town", cuisine: "Mexican", rating: 4.2, location: "Uptown" },
+    { id: 6, name: "Dragon's Breath", cuisine: "Chinese", rating: 4.6, location: "Midtown" },
+    { id: 7, name: "Mediterraneo", cuisine: "Mediterranean", rating: 4.4, location: "Downtown" },
+    { id: 8, name: "Vegan Vibes", cuisine: "Vegan", rating: 4.8, location: "Uptown" },
+    { id: 9, name: "BBQ Pit", cuisine: "Barbecue", rating: 4.1, location: "Midtown" },
+    { id: 10, name: "Seafood Shack", cuisine: "Seafood", rating: 4.5, location: "Downtown" },
+    { id: 11, name: "Pasta Palace", cuisine: "Italian", rating: 4.3, location: "Uptown" },
     { id: 12, name: "Ramen Realm", cuisine: "Japanese", rating: 4.7 },
     { id: 13, name: "Spice Route", cuisine: "Indian", rating: 4.4 },
     { id: 14, name: "Grill Master", cuisine: "American", rating: 4.2 },
@@ -42,18 +43,14 @@ const restaurants = [
 
 const TodaysOffers = () => {
     const scrollRef = useRef(null);
-    // const containerRef = useRef(null);
+    const placeOrderRef = useRef(null);
+
     const [canScrollLeft, setCanScrollLeft] = useState(false);
     const [canScrollRight, setCanScrollRight] = useState(false);
     const [selectedRestaurant, setSelectedRestaurant] = useState(restaurants[0]);
+    const [isPlaceOrderOpen, setIsPlaceOrderOpen] = useState(false);
 
     const scrollLeftOrRight = (direction) => {
-        // const container = containerRef.current;
-        // if (!container) return;
-
-        // const card = container.querySelector("div");
-        // const CARD_WIDTH = card?.offsetWidth || 100;
-    
         const scrollAmount = direction === 'left' ? -CARD_WIDTH : CARD_WIDTH; 
         if (scrollRef.current) {
             scrollRef.current.scrollBy({
@@ -86,9 +83,12 @@ const TodaysOffers = () => {
 
     const filteredOffers = selectedRestaurant ? offers.filter((offer) => offer.name === selectedRestaurant.name) : [];
 
+    const handlePlaceOrderOpen = () => {
+        setIsPlaceOrderOpen(!isPlaceOrderOpen);
+    }
 
   return (
-    <div className="md:ml-40 md:mt-20 remove-navbar">
+    <div className="md:ml-40 md:mt-20">
         <div className="mx-auto relative text-center mb-3 md:mb-9">
             <h2 className="text-[25px] md:text-4xl font-bold">Today's Offers</h2>
         </div>
@@ -123,19 +123,32 @@ const TodaysOffers = () => {
 
         {/* Offers List */}
         <div className="mt-5 md:mt-20 mb-10">
-            <div className="mb-2 md:mb-5 ml-5 md:ml-10"><h3 className="text-[18px] md:text-[28px] font-bold">{selectedRestaurant.name}</h3></div>
+            <div className="mb-2 md:mb-5 ml-5 md:ml-7">
+                <h3 className="text-[18px] md:text-[28px] font-bold">{selectedRestaurant.name}</h3>
+                <p className="text-gray-600 text-[12px] md:text-[16px]">{selectedRestaurant.cuisine} • {selectedRestaurant.location}</p>
+            </div>
             {filteredOffers.length > 0 ? (
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 px-5">
-                    {filteredOffers.map((offer) => (
-                        <div key={offer.id} className="relative border border-gray-300 rounded-lg hover:shadow-md transition">
-                            <img src={offer.image} alt={offer.title} className="w-full h-[100px] md:h-[200px] object-cover object-center rounded-t-lg"/>
-                            <div className="absolute top-3 md:top-5 left-3 bg-black opacity-75 px-1 md:px-2 py-1"><h3 className="text-white text-[12px]">{offer.title}</h3></div>
-                            <div className="px-3 py-2 text-[10px] md:text-[13px]">
-                                <p className="mb-[5px] font-semibold text-right">Valid Till: {new Date(offer.validTill).toLocaleDateString("en-US", { month: "short", day: "numeric" })}</p>
-                                <p>{offer.description}</p>                                
+                <div ref={placeOrderRef}>
+                    <button onClick={handlePlaceOrderOpen} className="grid grid-cols-2 md:grid-cols-4 gap-6 px-5">
+                        {filteredOffers.map((offer) => (
+                            <div key={offer.id} className="relative border border-gray-300 rounded-lg hover:shadow-md transition">
+                                <img src={offer.image} alt={offer.title} className="w-full h-[100px] md:h-[200px] object-cover object-center rounded-t-lg"/>
+                                <div className="absolute top-3 md:top-5 left-3 bg-black opacity-75 px-1 md:px-2 py-1"><h3 className="text-white text-[12px]">{offer.title}</h3></div>
+                                <div className="px-3 py-2 text-[10px] md:text-[13px]">
+                                    <span className="flex justify-between mb-[5px] font-semibold">
+                                        <p>LKR {offer.price.toFixed(2)}</p>
+                                        <p className="text-right">Valid Till: {new Date(offer.validTill).toLocaleDateString("en-US", { month: "short", day: "numeric" })}</p>
+                                    </span>
+                                    <p className="text-left">{offer.description}</p>                                
+                                </div>
                             </div>
+                        ))}
+                    </button>
+                    {isPlaceOrderOpen && (
+                        <div className="fixed inset-0 z-40 bg-black bg-opacity-50 flex justify-center items-center">
+                            <PlaceOrder isOpen={isPlaceOrderOpen} handlePlaceOrderOpen={handlePlaceOrderOpen} />
                         </div>
-                    ))}
+                    )}
                 </div>
             ) : (
                 <div className="mt-10">

@@ -28,7 +28,7 @@ const Navbar = () => {
 
   return (
     <>
-        <nav className="container fixed top-0 z-50 border-b-2 bg-white mx-auto flex items-center justify-between py-4 pr-6 pl-4">
+        <nav className="container fixed top-0 z-10 border-b-2 bg-white mx-auto flex items-center justify-between py-4 pr-6 pl-4">
             <div>
                 <Link to="/" className="text-lg font-semibold"> DelivaryDash</Link>
             </div>
@@ -45,11 +45,11 @@ const Navbar = () => {
                 <button 
                     onClick={handleCartOpen}
                     className="text-gray-700 hover:text-black">
-                    <FaShoppingCart className=""/>
+                    <FaShoppingCart />
                     <span className="bg-orange-400 text-white text-xs rounded-full px-1 py-0 absolute">2</span>
                 </button>
                 {isCartOpen && (
-                    <Cart isOpen={isCartOpen} handleCartOpen={handleCartOpen}/>
+                    <Cart isOpen={isCartOpen} />
                 )}
 
                 <button className="text-gray-700 hover:text-black"><GrFavorite /></button>
