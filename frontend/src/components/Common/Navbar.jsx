@@ -49,7 +49,7 @@ const Navbar = () => {
                     <span className="bg-orange-400 text-white text-xs rounded-full px-1 py-0 absolute">2</span>
                 </button>
                 {isCartOpen && (
-                    <Cart isOpen={isCartOpen} />
+                    <Cart />
                 )}
 
                 <button className="text-gray-700 hover:text-black"><GrFavorite /></button>

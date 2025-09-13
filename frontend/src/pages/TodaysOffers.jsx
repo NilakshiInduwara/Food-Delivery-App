@@ -5,17 +5,19 @@ import { CARD_WIDTH } from "../Constants";
 import offer1 from "../assets/images/Temp/Offer-1.jpg";
 import offer2 from "../assets/images/Temp/Offer-2.jpg";
 import offer3 from "../assets/images/Temp/Offer-3.webp";
+import potion1 from "../assets/images/Temp/potion1.jpg";
+import potion2 from "../assets/images/Temp/potion2.jpg";
 import PlaceOrder from "../components/Common/PlaceOrder";
 
 const offers = [
-    { id: 1, name: "Italiano Delight", item: "Fried Rice", price: 10.99, title: "50% off on all orders", description: "Get 50% off on all orders above $20 50% off on all orders above $20", validTill: "2023-12-31", image: offer1 },
-    { id: 4, name: "Italiano Delight", item: "Fried Rice", price: 11.99, title: "50% off on all ordersw", description: "Get 50% off on all orders above $20", validTill: "2023-12-31", image: offer2 },
-    { id: 5, name: "Italiano Delight", item: "Fried Rice", price: 14.99, title: "50% off on all orderss", description: "Get 50% off on all orders above $20", validTill: "2023-12-31", image: offer3 },
-    { id: 6, name: "Italiano Delight", item: "Fried Rice", price: 105.99, title: "50% off on all ordersf", description: "Get 50% off on all orders above $20", validTill: "2023-12-31", image: offer2 },
-    { id: 7, name: "Italiano Delight", item: "Fried Rice", price: 134.99, title: "50% off on all ordddddd", description: "Get 40% off ", validTill: "2023-12-31", image: offer3 },
-    { id: 8, name: "Italiano Delight", item: "Fried Rice", price: 10.99, title: "50% off on all placedsf", description: "Get 40% off ", validTill: "2023-12-31", image: offer3 },
-    { id: 2, name: "Sushi World", item: "Noodles", price: 12.99, title: "Free Delivery", description: "Enjoy free delivery on your first 3 orders", validTill: "2023-11-30", image: offer2 },
-    { id: 3, name: "Burger Barn", item: "Pizza", price: 14.99, title: "Buy 1 Get 1 Free", description: "Buy one pizza and get another one free", validTill: "2023-10-15", image: offer3 },
+    { id: 1, name: "Italiano Delight", item: "Fried Rice", price: 10.99, title: "50% off on all orders", description: "Get 50% off on all orders above $20 50% off on all orders above $20", validTill: "2023-12-31", image: offer1, potionImages: [{url: potion1, altText: "Large"}, {url: potion2, altText: "Small"}] },
+    { id: 4, name: "Italiano Delight", item: "Fried Rice", price: 11.99, title: "50% off on all ordersw", description: "Get 50% off on all orders above $20", validTill: "2023-12-31", image: offer2, potionImages: [{url: potion1, altText: "Potion 1"}, {url: potion2, altText: "Potion 2"}] },
+    { id: 5, name: "Italiano Delight", item: "Fried Rice", price: 14.99, title: "50% off on all orderss", description: "Get 50% off on all orders above $20", validTill: "2023-12-31", image: offer3, potionImages: [{url: potion1, altText: "Potion 1"}, {url: potion2, altText: "Potion 2"}] },
+    { id: 6, name: "Italiano Delight", item: "Fried Rice", price: 105.99, title: "50% off on all ordersf", description: "Get 50% off on all orders above $20", validTill: "2023-12-31", image: offer2, potionImages: [{url: potion1, altText: "Potion 1"}, {url: potion2, altText: "Potion 2"}] },
+    { id: 7, name: "Italiano Delight", item: "Fried Rice", price: 134.99, title: "50% off on all ordddddd", description: "Get 40% off ", validTill: "2023-12-31", image: offer3, potionImages: [{url: potion1, altText: "Potion 1"}, {url: potion2, altText: "Potion 2"}] },
+    { id: 8, name: "Italiano Delight", item: "Fried Rice", price: 10.99, title: "50% off on all placedsf", description: "Get 40% off ", validTill: "2023-12-31", image: offer3, potionImages: [{url: potion1, altText: "Potion 1"}, {url: potion2, altText: "Potion 2"}] },
+    { id: 2, name: "Sushi World", item: "Noodles", price: 12.99, title: "Free Delivery", description: "Enjoy free delivery on your first 3 orders", validTill: "2023-11-30", image: offer2, potionImages: [{url: potion1, altText: "Potion 1"}, {url: potion2, altText: "Potion 2"}] },
+    { id: 3, name: "Burger Barn", item: "Pizza", price: 14.99, title: "Buy 1 Get 1 Free", description: "Buy one pizza and get another one free", validTill: "2023-10-15", image: offer3, potionImages: [{url: potion1, altText: "Potion 1"}, {url: potion2, altText: "Potion 2"}] },
 ];
 
 const restaurants = [
@@ -48,6 +50,7 @@ const TodaysOffers = () => {
     const [canScrollLeft, setCanScrollLeft] = useState(false);
     const [canScrollRight, setCanScrollRight] = useState(false);
     const [selectedRestaurant, setSelectedRestaurant] = useState(restaurants[0]);
+    const [selectedOffer, setSelectedOffer] = useState(null);
     const [isPlaceOrderOpen, setIsPlaceOrderOpen] = useState(false);
 
     const scrollLeftOrRight = (direction) => {
@@ -89,7 +92,7 @@ const TodaysOffers = () => {
 
   return (
     <div className="md:ml-40 md:mt-20">
-        <div className="mx-auto relative text-center mb-3 md:mb-9">
+        <div className="mx-auto relative ml-[29.5rem] mb-3 md:mb-9">
             <h2 className="text-[25px] md:text-4xl font-bold">Today's Offers</h2>
         </div>
 
@@ -129,9 +132,9 @@ const TodaysOffers = () => {
             </div>
             {filteredOffers.length > 0 ? (
                 <div ref={placeOrderRef}>
-                    <button onClick={handlePlaceOrderOpen} className="grid grid-cols-2 md:grid-cols-4 gap-6 px-5">
+                    <button className="grid grid-cols-2 md:grid-cols-4 gap-6 px-5">
                         {filteredOffers.map((offer) => (
-                            <div key={offer.id} className="relative border border-gray-300 rounded-lg hover:shadow-md transition">
+                            <div key={offer.id} onClick={() => {setSelectedOffer(offer); handlePlaceOrderOpen();}} className="relative border border-gray-300 rounded-lg hover:shadow-md transition">
                                 <img src={offer.image} alt={offer.title} className="w-full h-[100px] md:h-[200px] object-cover object-center rounded-t-lg"/>
                                 <div className="absolute top-3 md:top-5 left-3 bg-black opacity-75 px-1 md:px-2 py-1"><h3 className="text-white text-[12px]">{offer.title}</h3></div>
                                 <div className="px-3 py-2 text-[10px] md:text-[13px]">
@@ -146,7 +149,7 @@ const TodaysOffers = () => {
                     </button>
                     {isPlaceOrderOpen && (
                         <div className="fixed inset-0 z-40 bg-black bg-opacity-50 flex justify-center items-center">
-                            <PlaceOrder isOpen={isPlaceOrderOpen} handlePlaceOrderOpen={handlePlaceOrderOpen} />
+                            <PlaceOrder handlePlaceOrderOpen={handlePlaceOrderOpen} offer={selectedOffer} />
                         </div>
                     )}
                 </div>
