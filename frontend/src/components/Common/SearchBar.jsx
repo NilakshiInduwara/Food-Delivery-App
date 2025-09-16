@@ -11,6 +11,7 @@ const SearchBar = () => {
 
     const handleSearch = (e) => {
         e.preventDefault();
+        // have to implement
         console.log("Searching for:", searchItem);
         setIsOpen(false);
     }
@@ -35,6 +36,7 @@ const SearchBar = () => {
                         <IoSearch className="h-6 w-6" />
                     </button>
                 </div>
+                {/* close icon */}
                 <button type="button" onClick={handleSearchClick} className="text-gray-700 hover:text-black"><IoClose className="h-6 w-6"/></button>
             </form>
         ) :
