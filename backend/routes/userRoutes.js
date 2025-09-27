@@ -59,4 +59,47 @@ router.post("/register", async (req, res) => {
     }
 });
 
+
+// @route POST /api/users/login
+// @desc User Login
+// @access Public
+router.post("/login", async (req, res) => {
+    const {email, password} = req.body;
+
+    try {
+        let user = await User.findOne({ email });
+        let isMatch = await user.matchPassword(password);
+
+        if(!user) return res.status(400).json({ message: "Invalid Credentials." });
+        if(!isMatch) return res.status(400).json({ message: "Invalid Credentials." });
+
+        // Create JWT payload
+        const payload = { user: { id: user._id, role: user.role } };
+
+        // Sign and return the token along with user data
+        jwt.sign(
+            payload,
+            process.env.JWT_SECRET,
+            { expiresIn: "40h" },       // have to change to a small value
+            (err, token) => {
+                if(err) throw err;
+
+                // Send the user and token in response
+                res.json({
+                    user: {
+                        _id: user._id,
+                        name: user.name,
+                        email: user.email,
+                        role: user.role,
+                    },
+                    token,
+                });
+            }
+        );
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Server Error");
+    }
+});
+
 module.exports = router;
