@@ -2,7 +2,7 @@ const express = require("express");
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 
-const router = express. Router() ;
+const router = express.Router();
 
 // @route POST /api/users/register
 // @desc Register a new user
@@ -11,25 +11,50 @@ router.post("/register", async (req, res) => {
     const { name, email, password } = req.body;
 
     try {
-        // Registration logic
-        let user = await User. findOne({ email });
+        // Registration logic - find by email
+        let user = await User.findOne({ email });
 
-        if (user) return res. status(400). json({ message: "User already exists" });
+        if (user) return res.status(400).json({ message: "User already exists" });
 
         user = new User({ name, email, password });
         await user.save();
 
-        res.status(201).json({
-            user: {
-                _id: user._id,
-                name: user.name,
-                email: user.email,
-                role: user. role,
+        // Create JWT payload
+        const payload = { user: { id: user._id, role: user.role } };
+
+        // Sign and return the token along with user data
+        jwt.sign(
+            payload,
+            process.env.JWT_SECRET,
+            { expiresIn: "40h" },       // have to change to a small value
+            (err, token) => {
+                if (err) throw err;
+
+                // Send the user and token in response
+                res.status(201).json({
+                    user: {
+                        _id: user._id,
+                        name: user.name,
+                        email: user.email,
+                        role: user.role,
+                    },
+                    token,
+                });
             }
-        });
+        );
+
+        // res.status(201).json({
+        //     user: {
+        //         _id: user._id,
+        //         name: user.name,
+        //         email: user.email,
+        //         role: user. role,
+        //     }
+        // });
+
         // res.send({ name, email, password });
     } catch (error) {
-        console. log(error);
+        console.log(error);
         res.status(500).send("Server Error");
     }
 });
