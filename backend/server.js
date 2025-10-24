@@ -3,6 +3,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const userRoutes = require("./routes/userRoutes");
+const offerRoutes = require("./routes/offerRoutes");
 
 const app = express();
 app.use(express.json());
@@ -21,6 +22,7 @@ res.send("WELCOME TO FOOD-DELIVERY API!");
 
 // API Routes
 app.use("/api/users", userRoutes);
+app.use("/api/offers", offerRoutes);
 
 app.listen(PORT, () => {
 console. log(`Server is running on http://localhost:${PORT}`);
