@@ -23,7 +23,14 @@ export const createOffer = async (req, res) => {
     try {
         const { name, item, price, title, description, validTill, increment } = req.body;
 
-        const image = req.file ? `/uploads/${req.file.filename}` : null;
+        // Handle main image
+        const image = req.files.image ? `/uploads/${req.files.image[0].filename}` : null;
+
+        // Handle potion images
+        const potionImages = req.files.potionImages ? req.files.potionImages.map(file => ({
+            url: `/uploads/${file.filename}`,
+            altText: file.originalname
+        })) : [];
 
         const offer = await Offer.create({
             name,
@@ -34,6 +41,7 @@ export const createOffer = async (req, res) => {
             validTill,
             increment,
             image,
+            potionImages,
         });
 
         res.status(201).json(offer);

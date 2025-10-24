@@ -5,7 +5,10 @@ const router = express.Router();
 
 router.route("/")
     .get(getOffers)
-    .post(upload.single("image"), createOffer);
+    .post(upload.fields([
+        { name: "image", maxCount: 1 },
+        { name: "potionImages", maxCount: 10 }
+    ]), createOffer);
 
 router.route("/:id").get(getOfferById);
 
