@@ -20,6 +20,9 @@ app.get("/", (req, res) => {
 res.send("WELCOME TO FOOD-DELIVERY API!");
 });
 
+// Serve uploaded images
+app.use("/uploads", express.static("uploads"));
+
 // API Routes
 app.use("/api/users", userRoutes);
 app.use("/api/offers", offerRoutes);

@@ -1,10 +1,11 @@
 const express = require("express");
 const { getOffers, getOfferById, createOffer } = require("../controllers/offerController");
+const { upload } = require("../middleware/uploadImage");
 const router = express.Router();
 
 router.route("/")
     .get(getOffers)
-    .post(createOffer);
+    .post(upload.single("image"), createOffer);
 
 router.route("/:id").get(getOfferById);
 
