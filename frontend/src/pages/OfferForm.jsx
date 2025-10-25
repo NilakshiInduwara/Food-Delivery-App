@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { OFFERS_URL } from "../Constants";
 
 function OfferForm() {
   const [formData, setFormData] = useState({
@@ -46,7 +47,7 @@ function OfferForm() {
     });
 
     try {
-      const res = await axios.post("http://localhost:5000/api/offers", data, {
+      const res = await axios.post(OFFERS_URL, data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

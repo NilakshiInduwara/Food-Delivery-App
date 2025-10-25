@@ -3,6 +3,7 @@ import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { IoMdStar, IoMdStarOutline, IoMdStarHalf } from "react-icons/io";
 import { CARD_WIDTH } from "../Constants";
 import PlaceOrder from "../components/Common/PlaceOrder";
+import { RESTAURANTS_URL, OFFERS_URL } from "../Constants";
 
 const TodaysOffers = () => {
     const scrollRef = useRef(null);
@@ -51,8 +52,8 @@ const TodaysOffers = () => {
       const fetchData = async () => {
         try {
           const [restaurantsRes, offersRes] = await Promise.all([
-            fetch("http://localhost:5000/api/restaurants"),
-            fetch("http://localhost:5000/api/offers"),
+            fetch(RESTAURANTS_URL),
+            fetch(OFFERS_URL),
           ]);
 
           const [restaurantsData, offersData] = await Promise.all([
@@ -128,7 +129,7 @@ const TodaysOffers = () => {
                     <button className="grid grid-cols-2 md:grid-cols-4 gap-6 px-5">
                         {filteredOffers.map((offer) => (
                             <div key={offer.id} onClick={() => {setSelectedOffer(offer); handlePlaceOrderOpen();}} className="relative border border-gray-300 rounded-lg hover:shadow-md transition">
-                                <img src={offer.image} alt={offer.title} className="w-full h-[100px] md:h-[200px] object-cover object-center rounded-t-lg"/>
+                                <img src={`http://localhost:5000${offer.image}`} alt={offer.title} className="w-full h-[100px] md:h-[200px] object-cover object-center rounded-t-lg"/>
                                 <div className="absolute top-3 md:top-5 left-3 bg-black opacity-75 px-1 md:px-2 py-1"><h3 className="text-white text-[12px]">{offer.title}</h3></div>
                                 <div className="px-3 py-2 text-[10px] md:text-[13px]">
                                     <span className="flex justify-between mb-[5px] font-semibold">

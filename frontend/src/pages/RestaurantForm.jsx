@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { RESTAURANTS_URL } from "../Constants";
 
 function RestaurantForm() {
   const [formData, setFormData] = useState({
@@ -18,7 +19,7 @@ function RestaurantForm() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/restaurants",
+        RESTAURANTS_URL,
         formData
       );
 
