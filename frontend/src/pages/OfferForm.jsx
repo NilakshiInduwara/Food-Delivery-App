@@ -52,7 +52,7 @@ function OfferForm() {
         },
       });
 
-      console.log("Offer created:", res.data);
+    //   console.log("Offer created:", res.data);
       alert("Offer created successfully!");
 
       setFormData({

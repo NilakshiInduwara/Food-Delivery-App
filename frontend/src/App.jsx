@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import TodaysOffers from './pages/TodaysOffers'
 import { Toaster } from "sonner";
 import OfferForm from './pages/OfferForm';
+import RestaurantForm from './pages/RestaurantForm'
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         </Route>       
         <Route path="/restaurant" element={<RestaurantLayout />} >
           <Route path="/restaurant/createOffer" element={< OfferForm/>} />
+          <Route path="/restaurant/createRestaurant" element={< RestaurantForm/>} />
         </Route> 
       </Routes>
     </BrowserRouter>

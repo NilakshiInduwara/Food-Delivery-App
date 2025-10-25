@@ -4,37 +4,15 @@ import { IoMdStar, IoMdStarOutline, IoMdStarHalf } from "react-icons/io";
 import { CARD_WIDTH } from "../Constants";
 import PlaceOrder from "../components/Common/PlaceOrder";
 
-const restaurants = [
-    { id: 1, name: "Italiano Delight", cuisine: "Italian", rating: 4.5, location: "Downtown" },
-    { id: 2, name: "Sushi World", cuisine: "Japanese", rating: 4.7, location: "210,V, Galle Rd, Matara" },
-    { id: 3, name: "Curry House", cuisine: "Indian", rating: 4.3, location: "Midtown" },
-    { id: 4, name: "Burger Barn", cuisine: "American", rating: 5.0, location: "Downtown" },
-    { id: 5, name: "Taco Town", cuisine: "Mexican", rating: 4.2, location: "Uptown" },
-    { id: 6, name: "Dragon's Breath", cuisine: "Chinese", rating: 4.6, location: "Midtown" },
-    { id: 7, name: "Mediterraneo", cuisine: "Mediterranean", rating: 4.4, location: "Downtown" },
-    { id: 8, name: "Vegan Vibes", cuisine: "Vegan", rating: 4.8, location: "Uptown" },
-    { id: 9, name: "BBQ Pit", cuisine: "Barbecue", rating: 4.1, location: "Midtown" },
-    { id: 10, name: "Seafood Shack", cuisine: "Seafood", rating: 4.5, location: "Downtown" },
-    { id: 11, name: "Pasta Palace", cuisine: "Italian", rating: 4.3, location: "Uptown" },
-    { id: 12, name: "Ramen Realm", cuisine: "Japanese", rating: 4.7 },
-    { id: 13, name: "Spice Route", cuisine: "Indian", rating: 4.4 },
-    { id: 14, name: "Grill Master", cuisine: "American", rating: 4.2 },
-    { id: 15, name: "Burrito Bros", cuisine: "Mexican", rating: 4.1 },
-    { id: 16, name: "Wok This Way", cuisine: "Chinese", rating: 4.6 },
-    { id: 17, name: "Olive Tree", cuisine: "Mediterranean", rating: 4.5 },
-    { id: 18, name: "Green Garden", cuisine: "Vegan", rating: 4.8 },
-    { id: 19, name: "Smokey's BBQ", cuisine: "Barbecue", rating: 4.3 },
-    { id: 20, name: "Ocean's Bounty", cuisine: "Seafood", rating: 4.7 },
-];
-
 const TodaysOffers = () => {
     const scrollRef = useRef(null);
     const placeOrderRef = useRef(null);
 
     const [offers, setOffers] = useState([]);
+    const [restaurants, setRestaurants] = useState([]);
     const [canScrollLeft, setCanScrollLeft] = useState(false);
     const [canScrollRight, setCanScrollRight] = useState(false);
-    const [selectedRestaurant, setSelectedRestaurant] = useState(restaurants[0]);
+    const [selectedRestaurant, setSelectedRestaurant] = useState(null);
     const [selectedOffer, setSelectedOffer] = useState(null);
     const [isPlaceOrderOpen, setIsPlaceOrderOpen] = useState(false);
 
@@ -70,10 +48,30 @@ const TodaysOffers = () => {
     },[]);
 
     useEffect(() => {
-      fetch("http://localhost:5000/api/offers")
-        .then((res) => res.json())
-        .then((data) => setOffers(data))
-        .catch((err) => console.error(err));
+      const fetchData = async () => {
+        try {
+          const [restaurantsRes, offersRes] = await Promise.all([
+            fetch("http://localhost:5000/api/restaurants"),
+            fetch("http://localhost:5000/api/offers"),
+          ]);
+
+          const [restaurantsData, offersData] = await Promise.all([
+            restaurantsRes.json(),
+            offersRes.json(),
+          ]);
+
+          setRestaurants(restaurantsData);
+          setOffers(offersData);
+
+          if (restaurantsData.length > 0) {
+            setSelectedRestaurant(restaurantsData[0]);
+          }
+        } catch (err) {
+          console.error("Error fetching data:", err);
+        }
+      };
+
+      fetchData();
     }, []);
 
     const filteredOffers = selectedRestaurant ? offers.filter((offer) => offer.name === selectedRestaurant.name) : [];
@@ -118,10 +116,13 @@ const TodaysOffers = () => {
 
         {/* Offers List */}
         <div className="mt-5 md:mt-20 mb-10">
-            <div className="mb-2 md:mb-5 ml-5 md:ml-7">
+            {selectedRestaurant && (
+                <div className="mb-2 md:mb-5 ml-5 md:ml-7">
                 <h3 className="text-[18px] md:text-[28px] font-bold">{selectedRestaurant.name}</h3>
                 <p className="text-gray-600 text-[12px] md:text-[16px]">{selectedRestaurant.cuisine} • {selectedRestaurant.location}</p>
             </div>
+            )}
+            
             {filteredOffers.length > 0 ? (
                 <div ref={placeOrderRef}>
                     <button className="grid grid-cols-2 md:grid-cols-4 gap-6 px-5">
