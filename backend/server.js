@@ -1,9 +1,10 @@
-const express = require("express");
-const cors = require("cors");
-const dotenv = require("dotenv");
-const connectDB = require("./config/db");
-const userRoutes = require("./routes/userRoutes");
-const offerRoutes = require("./routes/offerRoutes");
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import { connectDB } from './config/db.js';
+import userRoutes from './routes/userRoutes.js';
+import offerRoutes from './routes/offerRoutes.js';
+import restaurantRoutes from './routes/restaurantRoutes.js';
 
 const app = express();
 app.use(express.json());
@@ -26,6 +27,7 @@ app.use("/uploads", express.static("uploads"));
 // API Routes
 app.use("/api/users", userRoutes);
 app.use("/api/offers", offerRoutes);
+app.use("/api/restaurants", restaurantRoutes);
 
 app.listen(PORT, () => {
 console. log(`Server is running on http://localhost:${PORT}`);

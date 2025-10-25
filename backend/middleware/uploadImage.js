@@ -1,5 +1,4 @@
 import multer from "multer";
-import path from "path";
 
 // Define storage location and file naming rule
 const storage = multer.diskStorage({

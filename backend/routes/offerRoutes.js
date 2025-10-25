@@ -1,6 +1,6 @@
-const express = require("express");
-const { getOffers, getOfferById, createOffer } = require("../controllers/offerController");
-const { upload } = require("../middleware/uploadImage");
+import express from 'express';
+import { getOffers, getOfferById, createOffer } from '../controllers/offerController.js';
+import { upload } from '../middleware/uploadImage.js';
 const router = express.Router();
 
 router.route("/")
@@ -12,4 +12,4 @@ router.route("/")
 
 router.route("/:id").get(getOfferById);
 
-module.exports = router;
+export default router;
