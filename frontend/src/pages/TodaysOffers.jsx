@@ -90,7 +90,7 @@ const TodaysOffers = () => {
         {/* Restaurant Names Scroller */}
         <div ref={scrollRef} className="container mx-auto overflow-x-scroll flex space-x-[10px] md:space-x-[20px] relative px-5 no-scrollbar">
             {restaurants.map((restaurant) => (
-                <div key={restaurant.id} 
+                <div key={restaurant._id} 
                     onClick={() => setSelectedRestaurant(restaurant)} 
                     className={`min-w-[100px] md:min-w-[120px] max-w-[100px] md:max-w-[120px] cursor-pointer border rounded-lg py-2 pl-2 transition ${selectedRestaurant.id === restaurant.id ? "bg-blue-50 border-blue-300" : "border-gray-300"}`}>
                     <h3 className="text-sm font-semibold">{restaurant.name}</h3>
@@ -126,9 +126,9 @@ const TodaysOffers = () => {
             
             {filteredOffers.length > 0 ? (
                 <div ref={placeOrderRef}>
-                    <button className="grid grid-cols-2 md:grid-cols-4 gap-6 px-5">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 px-5">
                         {filteredOffers.map((offer) => (
-                            <div key={offer.id} onClick={() => {setSelectedOffer(offer); handlePlaceOrderOpen();}} className="relative border border-gray-300 rounded-lg hover:shadow-md transition">
+                            <div key={offer._id} onClick={() => {setSelectedOffer(offer); handlePlaceOrderOpen();}} className="relative border border-gray-300 rounded-lg hover:shadow-md transition">
                                 <img src={`http://localhost:5000${offer.image}`} alt={offer.title} className="w-full h-[100px] md:h-[200px] object-cover object-center rounded-t-lg"/>
                                 <div className="absolute top-3 md:top-5 left-3 bg-black opacity-75 px-1 md:px-2 py-1"><h3 className="text-white text-[12px]">{offer.title}</h3></div>
                                 <div className="px-3 py-2 text-[10px] md:text-[13px]">
@@ -140,7 +140,7 @@ const TodaysOffers = () => {
                                 </div>
                             </div>
                         ))}
-                    </button>
+                    </div>
                     {isPlaceOrderOpen && (
                         <div className="fixed inset-0 z-40 bg-black bg-opacity-50 flex justify-center items-center">
                             <PlaceOrder handlePlaceOrderOpen={handlePlaceOrderOpen} offer={selectedOffer} />
