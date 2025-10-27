@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 function AllDetails() {
   return (
-    <div className="remove-sidebar remove-navbar">
+    <div className="remove-sidebar">
       <section className="py-20 px-4 lg:px-0 grid grid-cols-2 gap-8 mt-8">
         <div className="container flex flex-col md:flex-row ml-[10rem] items-center">
           <Link

@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div className="remove-sidebar remove-navbar flex items-center justify-center">
-      <div className="hidden md:block mt-4">
+    <div className="remove-sidebar flex items-center justify-center">
+      <div className="hidden md:block mt-20">
         <section className="relative w-[700px] lg:w-[1007px] h-[400px] lg:h-[539px]">
           <img src={foodImage} alt="food" className="w-[700px] lg:w-[1007px] h-[400px] lg:h-[539px] object-cover object-center rounded-2xl"/>
           <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-15 rounded-2xl">
