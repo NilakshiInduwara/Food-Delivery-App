@@ -1,14 +1,16 @@
 import axios from "axios";
 import { useState } from "react";
 import { REGISTER_URL } from "../Constants";
+import { useNavigate } from "react-router-dom";
 
 function UserForm() {
     const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    role: "",
-  });
+      name: "",
+      email: "",
+      password: "",
+      role: "",
+    });
+    const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -23,6 +25,8 @@ function UserForm() {
       if (response.status === 201 || response.status === 200) {
         alert("Account created successfully!");
         setFormData({ name: "", email: "", password: "", role: "" });
+        navigate("/");
+        return;
       }
     } catch (error) {
       const message = error.response?.data?.message || "Failed to create account";
@@ -37,7 +41,7 @@ function UserForm() {
   return (
     <div className="flex justify-center items-center md:mt-20 mb-7">
       <div className="w-[70rem] bg-blue-100 p-9 rounded-lg shadow">
-        <h2 className="text-[1.8rem] font-semibold mb-5 text-center">
+        <h2 className="text-[1.8rem] font-semibold mb-6 text-center">
           Create an account
         </h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
@@ -84,7 +88,7 @@ function UserForm() {
           <button
             type="submit"
             disabled={!isFormValid}
-            className={`mt-4 py-2 px-4 rounded text-white bg-blue-400 ${
+            className={`mt-[3rem] mb-3 mx-[6rem] py-2 rounded text-white bg-blue-400 ${
               isFormValid ? "hover:bg-blue-500" : "cursor-not-allowed"
             }`}
           >
