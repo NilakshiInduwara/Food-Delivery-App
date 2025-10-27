@@ -5,3 +5,4 @@ export const RESTAURANTS_URL = `${BASE_URL}/restaurants`;
 export const OFFERS_URL = `${BASE_URL}/offers`;
 export const USERS_URL = `${BASE_URL}/users`;
 export const REGISTER_URL = `${BASE_URL}/register`;
+export const LOGIN_URL = `${BASE_URL}/login`;

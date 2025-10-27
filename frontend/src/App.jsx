@@ -10,6 +10,7 @@ import UserForm from './pages/UserForm'
 import AdminLayout from './components/Layout/AdminLayout'
 import AdminUser from './components/Admin/AdminUser'
 import AllDetails from './components/Admin/AllDetails'
+import Login from './pages/Login'
 
 const App = () => {
   return (
@@ -32,7 +33,7 @@ const App = () => {
         </Route>
 
           <Route path="/register" element={< UserForm/>} />
-          <Route path="/login" element={< UserForm/>} />
+          <Route path="/login" element={< Login/>} />
       </Routes>
     </BrowserRouter>
   )

@@ -44,6 +44,40 @@ export const registerUser = async (req, res) => {
   }
 };
 
+// @route POST /api/users/login
+export const loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ message: "Please fill all required fields" });
+    }
+
+    const existingUser = await User.findOne({ email });
+
+    if (!existingUser) {
+      return res.status(400).json({ message: "There is no user with this email" });
+    }
+
+    const isMatch = await existingUser.matchPassword(password);
+    if (!isMatch) {
+      return res.status(400).json({ message: "Invalid credentials" });
+    }
+
+    const token = generateToken(existingUser._id, existingUser.role);
+    res.json({
+      _id: existingUser._id,
+      name: existingUser.name,
+      email: existingUser.email,
+      role: existingUser.role,
+      token,
+    });
+  } catch (error) {
+    console.error("Login error:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
 // Get all users (Admin only)
 export const getUsers = async (req, res) => {
   try {
@@ -53,3 +87,5 @@ export const getUsers = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+// get own account details  -  to be implemented
