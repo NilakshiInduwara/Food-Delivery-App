@@ -88,4 +88,22 @@ export const getUsers = async (req, res) => {
   }
 };
 
-// get own account details  -  to be implemented
+// get logged-in user account details
+export const getUserById = async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id).select("-password");
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json({
+      name: user.name,
+      email: user.email,
+      role: user.role,
+    });
+  } catch (error) {
+    console.error("Get user profile error:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
