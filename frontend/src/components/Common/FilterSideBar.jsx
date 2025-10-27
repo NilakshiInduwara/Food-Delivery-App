@@ -50,7 +50,7 @@ const FilterSideBar = () => {
   };
 
   return (
-    <div className="hidden md:block p-4 w-40 top-[3.4rem] bottom-0 overflow-y-auto fixed no-scrollbar">
+    <div className="hidden md:block p-4 w-40 top-[3.4rem] bottom-0 overflow-y-auto fixed no-scrollbar shadow-lg">
       <h5 className="text-sm tracking-tighter font-semibold">Filter Options</h5>
       {/* Brunch field */}
       <div className="mt-3">
