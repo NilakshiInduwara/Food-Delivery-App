@@ -8,7 +8,7 @@ router.route("/")
     .post(upload.fields([
         { name: "image", maxCount: 1 },
         { name: "potionImages", maxCount: 10 }
-    ]), createOffer);
+    ]), protect, authorize("restaurant"), createOffer);
 
 router.route("/:id").get(getOfferById);
 

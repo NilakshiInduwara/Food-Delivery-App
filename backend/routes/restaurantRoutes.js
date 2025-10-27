@@ -3,7 +3,7 @@ import { getRestaurants, createRestaurant } from '../controllers/restaurantContr
 const router = express.Router();
 
 router.route("/")
-    .post(createRestaurant)
+    .post(protect, authorize("restaurant"), createRestaurant)
     .get(getRestaurants);
 
 export default router;
