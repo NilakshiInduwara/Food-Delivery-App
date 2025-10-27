@@ -25,7 +25,7 @@ res.send("WELCOME TO FOOD-DELIVERY API!");
 app.use("/uploads", express.static("uploads"));
 
 // API Routes
-app.use("/api/users", userRoutes);
+app.use("/api", userRoutes);
 app.use("/api/offers", offerRoutes);
 app.use("/api/restaurants", restaurantRoutes);
 

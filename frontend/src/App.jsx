@@ -6,6 +6,10 @@ import TodaysOffers from './pages/TodaysOffers'
 import { Toaster } from "sonner";
 import OfferForm from './pages/OfferForm';
 import RestaurantForm from './pages/RestaurantForm'
+import UserForm from './pages/UserForm'
+import AdminLayout from './components/Layout/AdminLayout'
+import AdminUser from './components/Admin/AdminUser'
+import AllDetails from './components/Admin/AllDetails'
 
 const App = () => {
   return (
@@ -15,11 +19,20 @@ const App = () => {
         <Route path="/" element={<UserLayout />} >
           <Route index element={<Home />} />
           <Route path="/offers" element={< TodaysOffers/>} />
-        </Route>       
+        </Route>      
+
         <Route path="/restaurant" element={<RestaurantLayout />} >
           <Route path="/restaurant/createOffer" element={< OfferForm/>} />
           <Route path="/restaurant/createRestaurant" element={< RestaurantForm/>} />
-        </Route> 
+        </Route>
+
+        <Route path="/admin" element={<AdminLayout />} >
+          <Route path="/admin/details" element={<AllDetails />} />
+          <Route path="/admin/users" element={<AdminUser />} />
+        </Route>
+
+          <Route path="/register" element={< UserForm/>} />
+          <Route path="/login" element={< UserForm/>} />
       </Routes>
     </BrowserRouter>
   )
