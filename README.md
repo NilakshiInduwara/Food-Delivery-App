@@ -2,11 +2,11 @@
 Customers need a simple way to order food online, track delivery in real-time, and pay securely. Restaurants need a dashboard to manage their menus and orders, while delivery partners need updates on assignments and tracking.
 
 #### Features
-Customers can browse restaurants, add food to cart, and place orders
-Restaurants can manage menus, view orders, and update order status
-Delivery partners receive order assignments and track deliveries
-Secure authentication and online payment support
-Real-time order updates and tracking
+- Customers can browse restaurants, add food to cart, and place orders
+- Restaurants can manage menus, view orders, and update order status
+- Delivery partners receive order assignments and track deliveries
+- Secure authentication and online payment support
+- Real-time order updates and tracking
 
 
 #### Frontend
@@ -27,7 +27,7 @@ node server.js
 
 
 #### Tech Stack
-Frontend: React 19, Vite, Tailwind CSS, React Router
-Backend: Node.js, Express.js
-Database: MongoDB, Mongoose
-Authentication: JWT, bcrypt
+- Frontend: React 19, Vite, Tailwind CSS, React Router
+- Backend: Node.js, Express.js
+- Database: MongoDB, Mongoose
+- Authentication: JWT, bcrypt
