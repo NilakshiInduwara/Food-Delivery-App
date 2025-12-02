@@ -71,6 +71,10 @@ function Login() {
             Log In
           </button>
         </form>
+        <div className="flex justify-center text-center mt-2 text-xs">
+          <span className="mr-1">Don't have an account?</span>
+          <a href="/register" className="text-blue-600 hover:underline"> Register here</a>
+        </div>
       </div>
     </div>
   )
