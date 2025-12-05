@@ -2,8 +2,11 @@ import axios from "axios";
 import { useState } from "react";
 import { LOGIN_URL } from "../Constants";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 function Login() {
+  const { setUser } = useAuth();
+
   const [formData, setFormData] = useState({
       email: "",
       password: "",
@@ -21,6 +24,20 @@ function Login() {
       const response = await axios.post(LOGIN_URL, formData);
 
       if (response.status === 201 || response.status === 200) {
+        // Save user in localStorage so ProtectedRoute knows the role
+        const userData = {
+          _id: response.data._id,
+          name: response.data.name,
+          email: response.data.email,
+          role: response.data.role,
+        };
+
+        localStorage.setItem("user", JSON.stringify(userData));
+        localStorage.setItem("token", response.data.token);
+        setUser(userData);
+
+        // console.log("Login response:", response.data);
+        
         alert("Successfully logged in!");
         setFormData({ email: "", password: "" });
         navigate("/");
