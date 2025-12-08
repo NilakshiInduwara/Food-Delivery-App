@@ -11,12 +11,13 @@ import AdminLayout from './components/Layout/AdminLayout'
 import AdminUser from './components/Admin/AdminUser'
 import AllDetails from './components/Admin/AllDetails'
 import Login from './pages/Login'
-import { AuthProvider } from './context/AuthContext'
 import ProtectedRoute from './components/ProtectedRoute'
+import { Provider } from 'react-redux'
+import { store } from './state/store'
 
 const App = () => {
   return (
-    <AuthProvider>
+    <Provider store={store}>
       <BrowserRouter>
         <Toaster position="top-right" />
         <Routes>
@@ -58,7 +59,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
-    </AuthProvider>
+    </Provider>
   );
 }
 

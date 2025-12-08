@@ -2,16 +2,17 @@ import axios from "axios";
 import { useState } from "react";
 import { LOGIN_URL } from "../Constants";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useDispatch } from "react-redux";
+import { loginSuccess } from "../state/Auth/authSlice";
 
 function Login() {
-  const { setUser } = useAuth();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
       email: "",
       password: "",
     });
-    const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -32,16 +33,15 @@ function Login() {
           role: response.data.role,
         };
 
-        localStorage.setItem("user", JSON.stringify(userData));
+        dispatch(loginSuccess(userData));
+
         localStorage.setItem("token", response.data.token);
-        setUser(userData);
 
         // console.log("Login response:", response.data);
         
         alert("Successfully logged in!");
         setFormData({ email: "", password: "" });
         navigate("/");
-        return;
       }
     } catch (error) {
       const message = error.response?.data?.message || "Failed to log in";
