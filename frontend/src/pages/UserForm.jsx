@@ -80,6 +80,7 @@ function UserForm() {
             className="form-border"
           >
             <option value="">Select Role</option>
+            <option value="admin">Admin</option>
             <option value="customer">Customer</option>
             <option value="restaurant">Restaurant</option>
             <option value="biker">Biker</option>

@@ -3,11 +3,15 @@ import restaurantImage from "../assets/images/Restaurant.jpeg";
 import favoritesImage from "../assets/images/Favorites.jpg";
 import offersImage from "../assets/images/Offers.jpeg";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Home = () => {
+  const user = useSelector((state) => state.auth.user);
+
   return (
     <div className="remove-sidebar flex items-center justify-center">
       <div className="hidden md:block mt-20">
+        <h2>Welcome </h2>
         <section className="relative w-[700px] lg:w-[1007px] h-[400px] lg:h-[539px]">
           <img src={foodImage} alt="food" className="w-[700px] lg:w-[1007px] h-[400px] lg:h-[539px] object-cover object-center rounded-2xl"/>
           <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-15 rounded-2xl">
@@ -24,6 +28,17 @@ const Home = () => {
               </Link>
             </div>            
           </div>
+
+          {user?.role === 'restaurant' && (
+            <div className="container mx-auto mb-10 flex flex-col md:flex-row">
+              <div className="relative flex-1">
+                <img src={offersImage} alt="Offers" className="w-full h-[300px] object-cover object-center rounded-2xl" />
+                  <Link to="/restaurant/createOffer" className="absolute bottom-20 flex justify-center bg-white bg-opacity-70 p-4">
+                    <h2 className="text-2xl lg:text-4xl font-bold text-center">Create Offers</h2>
+                  </Link>
+              </div>            
+            </div>
+          )}
 
           <div className="container mx-auto mb-10 flex flex-col md:flex-row">
             <div className="relative flex-1">

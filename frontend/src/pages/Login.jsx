@@ -2,13 +2,17 @@ import axios from "axios";
 import { useState } from "react";
 import { LOGIN_URL } from "../Constants";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginSuccess } from "../state/Auth/authSlice";
 
 function Login() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
       email: "",
       password: "",
     });
-    const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -21,10 +25,23 @@ function Login() {
       const response = await axios.post(LOGIN_URL, formData);
 
       if (response.status === 201 || response.status === 200) {
+        // Save user in localStorage so ProtectedRoute knows the role
+        const userData = {
+          _id: response.data._id,
+          name: response.data.name,
+          email: response.data.email,
+          role: response.data.role,
+        };
+
+        dispatch(loginSuccess(userData));
+
+        localStorage.setItem("token", response.data.token);
+
+        // console.log("Login response:", response.data);
+        
         alert("Successfully logged in!");
         setFormData({ email: "", password: "" });
         navigate("/");
-        return;
       }
     } catch (error) {
       const message = error.response?.data?.message || "Failed to log in";
