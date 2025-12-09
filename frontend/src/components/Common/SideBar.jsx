@@ -15,7 +15,6 @@ const SideBar = () => {
       // "Rice 🍚",
       // "Curry 🍛",
       "Soup 🥣",
-      "Breakfast 🥞",
       "Cheese 🧀",
       "Bread 🍞",
       "Ice Cream 🍦",

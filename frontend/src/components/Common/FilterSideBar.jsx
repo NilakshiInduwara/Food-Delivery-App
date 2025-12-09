@@ -1,5 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { bakery, beverages, brunches, desserts } from "../../data/foodItems";
 
 const FilterSideBar = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -12,24 +13,6 @@ const FilterSideBar = () => {
     maxPrice: 5000,
   });
   const [priceRange, setPriceRange] = useState([0, 5000]);
-
-  const brunches = [
-    "Burgers",
-    "Pizzas",
-    "Fries",
-    "Hot Dogs",
-    "Sandwiches",
-    "Tacos",
-    "Sushi",
-    "Ramen",
-    "Seafood",
-    "Salads",
-    "Soup",
-    "Breakfast",
-  ];
-  const bakery = ["Cheese", "Bread"];
-  const desserts = ["Ice Cream", "Cake", "Donuts"];
-  const beverages = ["Drinks", "Coffee", "Tea"];
 
   useEffect(() => {
     const params = Object.fromEntries([...searchParams]);

@@ -4,7 +4,6 @@ import RestaurantLayout from './components/Layout/RestaurantLayout'
 import Home from './pages/Home'
 import TodaysOffers from './pages/TodaysOffers'
 import { Toaster } from "sonner";
-import OfferForm from './pages/OfferForm';
 import RestaurantForm from './pages/RestaurantForm'
 import UserForm from './pages/UserForm'
 import AdminLayout from './components/Layout/AdminLayout'
@@ -14,6 +13,8 @@ import Login from './pages/Login'
 import ProtectedRoute from './components/ProtectedRoute'
 import { Provider } from 'react-redux'
 import { store } from './state/store'
+import HomeLayout from './components/Layout/HomeLayout'
+import CreateFoodItemForm from './pages/CreateFoodItemForm'
 
 const App = () => {
   return (
@@ -21,17 +22,20 @@ const App = () => {
       <BrowserRouter>
         <Toaster position="top-right" />
         <Routes>
+          <Route path="/" element={<HomeLayout />}>
+            <Route index element={<Home />} />  
+          </Route>
+
           <Route path="/" element={<UserLayout />}>
-            <Route index element={<Home />} />
             <Route path="/offers" element={<TodaysOffers />} />
           </Route>
 
           <Route path="/restaurant" element={<RestaurantLayout />}>
             <Route
-              path="createOffer"
+              path="createFoodItem"
               element={
                 <ProtectedRoute allowedRoles={["restaurant"]}>
-                  <OfferForm />
+                  <CreateFoodItemForm />
                 </ProtectedRoute>
               }
             />
