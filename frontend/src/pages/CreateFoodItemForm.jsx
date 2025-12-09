@@ -1,16 +1,20 @@
 import { useState } from "react";
 import axios from "axios";
-import { OFFERS_URL } from "../Constants";
+import { RESTAURANTS_URL } from "../Constants";
+import { allItems } from "../data/foodItems";
+import { useSelector } from "react-redux";
 
-function OfferForm() {
+function CreateFoodItemForm() {
+  const { user } = useSelector((state) => state.auth);
+
   const [formData, setFormData] = useState({
     name: "",
     item: "",
     price: "",
     title: "",
     description: "",
-    validTill: "",
-    increment: "",
+    // validTill: "",
+    // increment: "",
   });
   const [image, setImage] = useState(null);
   const [potionImages, setPotionImages] = useState([]);
@@ -47,9 +51,9 @@ function OfferForm() {
     });
 
     try {
-      const res = await axios.post(OFFERS_URL, data, {
+      const res = await axios.post(`${RESTAURANTS_URL}/createFoodItem`, data, {
         headers: {
-          Authorization: `Bearer ${token}`, 
+          Authorization: `Bearer ${user?.token}`, 
           "Content-Type": "multipart/form-data",
         },
       });
@@ -63,8 +67,8 @@ function OfferForm() {
         price: "",
         title: "",
         description: "",
-        validTill: "",
-        increment: "",
+        // validTill: "",
+        // increment: "",
       });
       setImage(null);
       setPotionImages([]);
@@ -79,9 +83,9 @@ function OfferForm() {
     formData.item.trim() &&
     formData.price &&
     formData.title.trim() &&
-    formData.description.trim() &&
-    formData.validTill &&
-    formData.increment;
+    formData.description.trim();
+    // formData.validTill &&
+    // formData.increment;
 
   return (
     <div className="flex justify-center items-center md:mt-20 mb-7">
@@ -89,23 +93,29 @@ function OfferForm() {
         <h2 className="text-[1.8rem] font-semibold mb-5 text-center">Create Offer</h2>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+          {/* has to auto select this name --------------------------------- */}
           <input
             name="name"
-            placeholder="Name"
+            placeholder="Restaurant Name"
             value={formData.name}
             onChange={handleChange}
             required
             className="form-border"
           />
 
-          <input
+          <select
             name="item"
             placeholder="Item"
             value={formData.item}
             onChange={handleChange}
             required
             className="form-border"
-          />
+          >
+            <option value="">Select Item</option>
+            {allItems.map((item) => (
+              <option key={item} value={item}>{item}</option>
+            ))}
+          </select>
 
           <input
             name="price"
@@ -135,24 +145,27 @@ function OfferForm() {
             className="form-border"
           />
 
-          <input
-            name="validTill"
-            type="date"
-            value={formData.validTill}
-            onChange={handleChange}
-            required
-            className="form-border"
-          />
+          {/* <div>
+            <label className="block font-medium mb-1">Valid Till:</label>
+            <input
+              name="validTill"
+              type="date"
+              value={formData.validTill}
+              onChange={handleChange}
+              required
+              className="form-border w-full"
+            />
+          </div> */}
 
-          <input
+          {/* <input
             name="increment"
             type="number"
-            placeholder="Increment"
+            placeholder="Offer Percentage"
             value={formData.increment}
             onChange={handleChange}
             required
             className="form-border"
-          />
+          /> */}
 
           <div>
             <label className="block font-medium mb-1">
@@ -190,4 +203,4 @@ function OfferForm() {
   );
 }
 
-export default OfferForm;
+export default CreateFoodItemForm;

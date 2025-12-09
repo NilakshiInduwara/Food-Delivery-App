@@ -132,6 +132,7 @@ const TodaysOffers = () => {
                                 <img src={`http://localhost:5000${offer.image}`} alt={offer.title} className="w-full h-[100px] md:h-[200px] object-cover object-center rounded-t-lg"/>
                                 <div className="absolute top-3 md:top-5 left-3 bg-black opacity-75 px-1 md:px-2 py-1"><h3 className="text-white text-[12px]">{offer.title}</h3></div>
                                 <div className="px-3 py-2 text-[10px] md:text-[13px]">
+                                    <div className="text-base font-bold mb-[5px]">{offer.item}</div>
                                     <span className="flex justify-between mb-[5px] font-semibold">
                                         <p>LKR {offer.price.toFixed(2)}</p>
                                         <p className="text-right">Valid Till: {new Date(offer.validTill).toLocaleDateString("en-US", { month: "short", day: "numeric" })}</p>

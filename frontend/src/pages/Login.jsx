@@ -31,13 +31,14 @@ function Login() {
           name: response.data.name,
           email: response.data.email,
           role: response.data.role,
+          token: response.data.token,
         };
 
         dispatch(loginSuccess(userData));
 
-        localStorage.setItem("token", response.data.token);
+        // localStorage.setItem("token", response.data.token);
 
-        // console.log("Login response:", response.data);
+        console.log("Login response:", response.data);
         
         alert("Successfully logged in!");
         setFormData({ email: "", password: "" });
